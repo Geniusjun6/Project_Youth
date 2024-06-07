@@ -121,19 +121,19 @@ video {
 }
 
 @layer components {
-  .flexcenter {
+  .flex_center {
     @apply flex items-center justify-center;
   }
 
-  .margincenter {
+  .margin_center {
     @apply mx-auto my-0;
   }
 
-  .flexwrap {
+  .flex_wrap {
     @apply flex flex-wrap;
   }
 }
 
 main {
-  @apply max-w-screen-xl mx-auto my-8;
+  @apply max-w-screen-lg mx-auto py-8 mt-20 min-h-dvh;
 }

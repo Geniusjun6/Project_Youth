@@ -1,11 +1,11 @@
 /* 전체 네비게이션바 */
 .nav {
-  @apply shadow-md z-20 bg-YouthColor-m p-4 h-20 content-center text-TextColor-gray text-lg;
+  @apply fixed top-0 left-0 right-0 shadow-md bg-YouthColor-m p-4 mb-4 h-20 content-center text-TextColor-gray text-lg;
 }
 
 /* 네비게이션바 내부 컨텐츠 컨테이너 */
-.navContainer {
-  @apply flex justify-between max-w-screen-xl mx-auto;
+.nav_container {
+  @apply flex justify-between max-w-screen-lg mx-auto;
 }
 
 /* 로고, 메뉴 요소 영역 */
@@ -15,5 +15,5 @@
 
 /* 메뉴 요소 */
 .menu {
-  @apply block h-full content-center rounded-md px-4 hover:bg-YouthColor-s/45 cursor-pointer;
+  @apply block h-full content-center rounded-md px-4 hover:bg-YouthColor-s/45 hover:font-bold cursor-pointer;
 }
