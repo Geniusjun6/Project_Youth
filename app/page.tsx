@@ -1,3 +1,7 @@
 export default function Home() {
-  return <h1>Hello Chungchun</h1>
+  return (
+    <div>
+      <h1 className="text-4xl">Hello Chungchun</h1>
+    </div>
+  );
 }

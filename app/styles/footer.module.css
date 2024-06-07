@@ -1,0 +1,29 @@
+/* 전체 푸터 영역 */
+.footer {
+  @apply bg-YouthColor-m p-4 h-60 content-center text-TextColor-gray;
+}
+
+/* 푸터 내 컨텐츠 영역 */
+.foot_container {
+  @apply content-center max-w-screen-lg mx-auto;
+}
+
+/* 로고 및 푸터 메뉴 영역 */
+.top_contents {
+  @apply flex content-center justify-between;
+}
+
+/* 푸터 메뉴 전체 영역 */
+.footer_menu_list {
+  @apply flex space-x-10 items-center;
+}
+
+/* 푸터 메뉴 */
+.footer_menu {
+  @apply hover:underline hover:font-bold;
+}
+
+/* 푸터 회사 정보 */
+.corp_info {
+  @apply mt-4;
+}
