@@ -1,5 +1,5 @@
 .nav {
-  @apply bg-YouthColor-m p-4 h-20 content-center text-TextColor-gray text-xl;
+  @apply bg-YouthColor-m p-4 h-20 content-center text-TextColor-gray text-lg;
 }
 
 .navContainer {
@@ -11,5 +11,5 @@
 }
 
 .menu {
-  @apply rounded content-center px-4 hover:bg-YouthColor-s/55 cursor-pointer;
+  @apply rounded-md content-center px-4 hover:bg-YouthColor-s/45 cursor-pointer;
 }
