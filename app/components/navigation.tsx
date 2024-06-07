@@ -13,17 +13,25 @@ export default function Navigation() {
           </li>
         </div>
         <div className={styles.contents}>
-          <li className={styles.menu}>
-            <Link href="/career">경력 관리하기</Link>
+          <li>
+            <Link className={styles.menu} href="/career">
+              경력 관리하기
+            </Link>
           </li>
-          <li className={styles.menu}>
-            <Link href="/resume">이력서 작성하기</Link>
+          <li>
+            <Link className={styles.menu} href="/resume">
+              이력서 작성하기
+            </Link>
           </li>
-          <li className={styles.menu}>
-            <Link href="/contact">문의하기</Link>
+          <li>
+            <Link className={styles.menu} href="/contact">
+              문의하기
+            </Link>
           </li>
-          <li className={styles.menu}>
-            <Link href="/sign-in">로그인</Link>
+          <li>
+            <Link className={styles.menu} href="/sign-in">
+              로그인
+            </Link>
           </li>
         </div>
       </ul>

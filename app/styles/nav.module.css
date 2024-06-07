@@ -11,5 +11,5 @@
 }
 
 .menu {
-  @apply rounded-md content-center px-4 hover:bg-YouthColor-s/45 cursor-pointer;
+  @apply block h-full content-center rounded-md px-4 hover:bg-YouthColor-s/45 cursor-pointer;
 }
