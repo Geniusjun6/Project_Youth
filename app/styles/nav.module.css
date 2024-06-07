@@ -1,5 +1,5 @@
 .nav {
-  @apply bg-YouthColor-m p-4 h-20 content-center text-TextColor-gray text-lg;
+  @apply shadow-md z-20 bg-YouthColor-m p-4 h-20 content-center text-TextColor-gray text-lg;
 }
 
 .navContainer {

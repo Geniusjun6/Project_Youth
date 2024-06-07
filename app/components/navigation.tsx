@@ -6,8 +6,10 @@ export default function Navigation() {
     <nav className={styles.nav}>
       <ul className={styles.navContainer}>
         <div className={styles.contents}>
-          <li className="p-2">
-            <Link href="/">Logo</Link>
+          <li>
+            <Link href="/">
+              <img src="/image/logo_white.png" alt="Logo" width={60} height={60} />
+            </Link>
           </li>
         </div>
         <div className={styles.contents}>
