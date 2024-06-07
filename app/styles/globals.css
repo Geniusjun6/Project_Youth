@@ -9,11 +9,6 @@
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
-a {
-  text-decoration: none;
-  color: unset;
-}
-
 ol,
 ul {
   list-style: none;
@@ -123,4 +118,22 @@ video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
+}
+
+@layer components {
+  .flexcenter {
+    @apply flex items-center justify-center;
+  }
+
+  .margincenter {
+    @apply mx-auto my-0;
+  }
+
+  .flexwrap {
+    @apply flex flex-wrap;
+  }
+}
+
+main {
+  @apply max-w-screen-xl mx-auto my-8;
 }

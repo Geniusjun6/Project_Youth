@@ -1,0 +1,15 @@
+.nav {
+  @apply bg-YouthColor-m p-4 h-20 content-center text-TextColor-gray text-xl;
+}
+
+.navContainer {
+  @apply flex justify-between max-w-screen-xl mx-auto;
+}
+
+.contents {
+  @apply flex content-center space-x-5;
+}
+
+.menu {
+  @apply rounded content-center px-4 hover:bg-YouthColor-s/55 cursor-pointer;
+}

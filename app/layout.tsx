@@ -1,5 +1,5 @@
 import Navigation from "./components/navigation";
-import "./globals.css";
+import "./styles/globals.css";
 
 export const metadata = {
   title: "청춘",
@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Navigation />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
