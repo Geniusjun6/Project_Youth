@@ -1,6 +1,6 @@
 /* 전체 컨텐츠 영역 */
 .body_container {
-  @apply flex-col;
+  @apply flex-col w-11/12 mx-auto;
 }
 
 /* 상단 인트로 영역 */
@@ -14,5 +14,5 @@
 }
 
 .steps li {
-  @apply w-64 bg-YouthColor-i rounded-md drop-shadow-md transform transition-transform duration-300 hover:-translate-y-2;
+  @apply w-64 bg-youth_color-i rounded-md drop-shadow-md transform transition-transform duration-300 hover:-translate-y-2;
 }

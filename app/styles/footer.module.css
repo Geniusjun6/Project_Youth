@@ -1,6 +1,6 @@
 /* 전체 푸터 영역 */
 .footer {
-  @apply bg-YouthColor-m p-4 h-60 content-center text-TextColor-gray;
+  @apply bg-youth_color-m p-4 h-60 content-center text-text_color-gray;
 }
 
 /* 푸터 내 컨텐츠 영역 */

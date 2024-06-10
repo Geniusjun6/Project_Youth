@@ -135,5 +135,5 @@ video {
 }
 
 main {
-  @apply w-11/12 mx-auto py-8 mt-20 min-h-dvh;
+  @apply py-8 mt-20 min-h-dvh bg-bg_color;
 }
