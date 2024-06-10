@@ -1,0 +1,18 @@
+/* 전체 컨텐츠 영역 */
+.body_container {
+  @apply flex-col;
+}
+
+/* 상단 인트로 영역 */
+.intro {
+  @apply mb-10 text-center text-lg;
+}
+
+/* 서비스 이용 안내 */
+.steps {
+  @apply flex justify-between max-w-screen-lg mx-auto;
+}
+
+.steps li {
+  @apply w-64 bg-YouthColor-i rounded-md drop-shadow-md transform transition-transform duration-300 hover:-translate-y-2;
+}
