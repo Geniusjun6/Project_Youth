@@ -5,7 +5,7 @@
 
 /* 상단 배너 영역 */
 .top_banner {
-  @apply relative bg-cover bg-center bg-main-top-banner rounded-[30px] min-w-[1200px] h-[850px] shadow-md;
+  @apply relative bg-cover bg-center bg-main-top-banner rounded-[30px] h-[850px] shadow-md;
 }
 
 .banner_gradient {
@@ -22,4 +22,13 @@
 
 .banner_sub_title {
   @apply text-2xl;
+}
+
+/* 중단 텍스트 컨텐츠 영역 */
+.mid_content {
+  @apply mt-60 ml-20;
+}
+
+.mid_main_text {
+  @apply font-bold text-5xl space-y-3 mt-5;
 }

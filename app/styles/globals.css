@@ -135,5 +135,5 @@ video {
 }
 
 main {
-  @apply py-8 mt-20 min-h-dvh bg-bg_color;
+  @apply py-8 mt-20 min-h-dvh min-w-[1200px]  bg-bg_color;
 }
