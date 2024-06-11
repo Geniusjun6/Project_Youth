@@ -5,7 +5,7 @@
 
 /* 푸터 내 컨텐츠 영역 */
 .foot_container {
-  @apply content-center w-11/12 mx-auto;
+  @apply content-center min-w-[1200px] w-11/12 mx-auto;
 }
 
 /* 로고 및 푸터 메뉴 영역 */

@@ -6,7 +6,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "main-top-banner": "url('/image/banner-3.jpg')"
+      }
+    },
     colors: {
       'youth_color': {
         'm': '#5170FD',
@@ -17,7 +21,8 @@ module.exports = {
         'gray': '#f2f2f2',
         'gray2': '#8d8d8d'
       },
-      'bg_color': '#F9F9F9'
+      'bg_color': '#F9F9F9',
+      'bg_gradient': '#000000'
     },
   },
   plugins: [],

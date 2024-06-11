@@ -1,18 +1,25 @@
 /* 전체 컨텐츠 영역 */
 .body_container {
-  @apply flex-col w-11/12 mx-auto;
+  @apply w-11/12 mx-auto;
 }
 
-/* 상단 인트로 영역 */
-.intro {
-  @apply mb-10 text-center text-lg;
+/* 상단 배너 영역 */
+.top_banner {
+  @apply relative bg-cover bg-center bg-main-top-banner rounded-[30px] min-w-[1200px] h-[850px] shadow-md;
 }
 
-/* 서비스 이용 안내 */
-.steps {
-  @apply flex justify-between max-w-screen-lg mx-auto;
+.banner_gradient {
+  @apply absolute flex flex-col w-full h-full bg-gradient-to-r from-bg_gradient/75 rounded-[30px];
 }
 
-.steps li {
-  @apply w-64 bg-youth_color-i rounded-md drop-shadow-md transform transition-transform duration-300 hover:-translate-y-2;
+.top_banner_text {
+  @apply pl-20 flex flex-col justify-center h-full text-text_color-gray;
+}
+
+.banner_title {
+  @apply mt-[-150px] text-6xl font-bold mb-5;
+}
+
+.banner_sub_title {
+  @apply text-2xl;
 }
