@@ -5,7 +5,7 @@
 
 /* 상단 배너 영역 */
 .top_banner {
-  @apply relative bg-cover bg-center bg-main-top-banner rounded-[30px] h-[850px] shadow-md;
+  @apply relative bg-cover bg-center bg-main-top-banner rounded-[30px] h-[800px] shadow-md;
 }
 
 .banner_gradient {
@@ -31,4 +31,38 @@
 
 .mid_main_text {
   @apply font-bold text-5xl space-y-3 mt-5;
+}
+
+/* 서비스 안내 영역 */
+.service_steps {
+  @apply flex justify-end mt-20 space-x-4;
+}
+
+.step_container {
+  @apply relative min-w-[400px] w-[480px] h-[350px] rounded-3xl shadow-md bg-bg_white transition-all duration-300 ease-in-out;
+}
+
+.step_container:hover {
+  @apply w-[700px] bg-youth_color-s;
+}
+
+.step_container:hover .step_text h1,
+.step_container:hover .step_text h3,
+.step_container:hover .step_text p {
+  @apply text-text_color-gray;
+}
+.step_content {
+  @apply absolute w-full h-full p-10 flex flex-col justify-between;
+}
+
+.step_text h3 {
+  @apply font-semibold text-xl text-youth_color-s;
+}
+
+.step_text h1 {
+  @apply font-bold text-3xl mb-2;
+}
+
+.step_img {
+  @apply flex justify-between items-end;
 }

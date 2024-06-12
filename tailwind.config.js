@@ -22,7 +22,8 @@ module.exports = {
         'gray2': '#8d8d8d'
       },
       'bg_color': '#F9F9F9',
-      'bg_gradient': '#000000'
+      'bg_gradient': '#000000',
+      'bg_white': '#FFFFFF'
     },
   },
   plugins: [],
