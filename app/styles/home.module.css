@@ -66,3 +66,12 @@
 .step_img {
   @apply flex justify-between items-end;
 }
+
+/* 메인 버튼 */
+.resume_btn_container {
+  @apply w-full flex mt-10 justify-center items-center z-20;
+}
+
+.resume_btn_container button {
+  @apply my-10 w-[800px] min-w-max py-3 shadow-md rounded-[15px] bg-youth_color-m text-text_color-gray font-semibold text-lg;
+}
