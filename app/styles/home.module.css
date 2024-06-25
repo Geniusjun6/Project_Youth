@@ -1,0 +1,81 @@
+/* 전체 컨텐츠 영역 */
+.body_container {
+  @apply w-11/12 mx-auto;
+}
+
+/* 상단 배너 영역 */
+.top_banner {
+  @apply relative bg-cover bg-center bg-main-top-banner rounded-[30px] h-[800px] shadow-md;
+}
+
+.banner_gradient {
+  @apply absolute flex flex-col w-full h-full bg-gradient-to-r from-bg_gradient/75 rounded-[30px];
+}
+
+.top_banner_text {
+  @apply pl-20 flex flex-col justify-center h-full text-text_color-gray;
+}
+
+.banner_title {
+  @apply mt-[-150px] text-6xl font-bold mb-5;
+}
+
+.banner_sub_title {
+  @apply text-2xl;
+}
+
+/* 중단 텍스트 컨텐츠 영역 */
+.mid_content {
+  @apply mt-60 ml-20;
+}
+
+.mid_main_text {
+  @apply font-bold text-5xl space-y-3 mt-5;
+}
+
+/* 서비스 안내 영역 */
+.service_steps {
+  @apply flex justify-end mt-20 mb-10 space-x-4;
+}
+
+.step_container {
+  @apply relative min-w-[400px] w-[480px] h-[350px] rounded-3xl shadow-md bg-bg_white transition-all duration-300 ease-in-out;
+}
+
+.step_container:hover {
+  @apply w-[700px] bg-youth_color-s;
+}
+
+.step_container:hover .step_text h1,
+.step_container:hover .step_text h3,
+.step_container:hover .step_text p {
+  @apply text-text_color-gray;
+}
+.step_content {
+  @apply absolute w-full h-full p-10 flex flex-col justify-between;
+}
+
+.step_text h3 {
+  @apply font-semibold text-xl text-youth_color-s;
+}
+
+.step_text h1 {
+  @apply font-bold text-3xl mb-2;
+}
+
+.step_img {
+  @apply flex justify-between items-end;
+}
+
+/* 메인 버튼 */
+.resume_btn_scroll {
+  @apply fixed bottom-[80px] left-0 w-full flex justify-center p-4 transition-all duration-300;
+}
+
+.resume_btn_end {
+  @apply flex h-[52] w-full justify-center items-center transition-all duration-300;
+}
+
+.resume_btn {
+  @apply w-[800px] min-w-max py-3 shadow-md rounded-[15px] bg-youth_color-m text-text_color-gray font-semibold text-lg text-center hover:bg-youth_color-s;
+}

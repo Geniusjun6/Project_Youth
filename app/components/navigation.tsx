@@ -8,7 +8,7 @@ export default function Navigation() {
         <div className={styles.contents}>
           <li>
             <Link href="/">
-              <img src="/image/logo_white.png" alt="Logo" width={60} height={60} />
+              <img src="/image/logo_white.png" alt="Logo" width={70} height={70} />
             </Link>
           </li>
         </div>
@@ -28,6 +28,8 @@ export default function Navigation() {
               문의하기
             </Link>
           </li>
+        </div>
+        <div className={styles.contents}>
           <li>
             <Link className={styles.menu} href="/sign-in">
               로그인
