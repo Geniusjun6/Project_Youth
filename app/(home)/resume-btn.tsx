@@ -6,21 +6,19 @@ import { useEffect, useState } from "react";
 
 /** 이력서 작성하기 버튼 */
 export default function Button() {
-  const [isBottom, setBottom] = useState(false);
+  const [isAtCriteria, setIsAtCriteriaHeight] = useState(false);
 
   const handleScroll = () => {
-    const footerHeight = 240; // Footer의 높이를 설정
-    const footerButtonOffset = 50; //
+    const criteriaHeight = 800; // 기준 높이를 설정
     const scrollTop = window.scrollY;
-    console.log("scrollTop: ", scrollTop);
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
 
-    // 현재 스크롤 위치가 Footer 근처인지 확인
-    if (scrollTop + windowHeight >= documentHeight - footerHeight - footerButtonOffset) {
-      setBottom(true);
+    // 현재 스크롤 위치가 기준 근처인지 확인
+    if (scrollTop + windowHeight >= documentHeight - criteriaHeight) {
+      setIsAtCriteriaHeight(true);
     } else {
-      setBottom(false);
+      setIsAtCriteriaHeight(false);
     }
   };
 
@@ -30,7 +28,7 @@ export default function Button() {
   }, []);
 
   return (
-    <div className={`${isBottom ? styles.resume_btn_end : styles.resume_btn_scroll}`}>
+    <div className={`${isAtCriteria ? styles.resume_btn_end : styles.resume_btn_scroll}`}>
       <Link href="/resume" className={styles.resume_btn}>
         이력서 작성하기
       </Link>
