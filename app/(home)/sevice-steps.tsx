@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../styles/home.module.css";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export default function ServiceSteps() {
   return (
@@ -15,10 +16,10 @@ export default function ServiceSteps() {
           </div>
           <div className={styles.step_img}>
             <div>
-              <img src="/image/CTA-btn.png" alt="바로가기 버튼"></img>
+              <Image src="/image/CTA-btn.png" alt="바로가기 버튼" width={50} height={50} layout="intrinsic" />
             </div>
             <div>
-              <img src="/image/Career.png" alt="경력관리 아이콘"></img>
+              <Image src="/image/Career.png" alt="경력관리 아이콘" width={100} height={100} layout="intrinsic" />
             </div>
           </div>
         </div>
@@ -35,10 +36,10 @@ export default function ServiceSteps() {
           </div>
           <div className={styles.step_img}>
             <div>
-              <img src="/image/CTA-btn.png" alt="바로가기 버튼"></img>
+              <Image src="/image/CTA-btn.png" alt="바로가기 버튼" width={50} height={50} layout="intrinsic" />
             </div>
             <div>
-              <img src="/image/resume.png" alt="경력관리 아이콘"></img>
+              <Image src="/image/resume.png" alt="경력관리 아이콘" width={100} height={100} layout="intrinsic" />
             </div>
           </div>
         </div>
@@ -55,10 +56,10 @@ export default function ServiceSteps() {
           </div>
           <div className={styles.step_img}>
             <div>
-              <img src="/image/CTA-btn.png" alt="바로가기 버튼"></img>
+              <Image src="/image/CTA-btn.png" alt="바로가기 버튼" width={50} height={50} layout="intrinsic" />
             </div>
             <div>
-              <img src="/image/pdf.png" alt="경력관리 아이콘"></img>
+              <Image src="/image/pdf.png" alt="이력서 다운로드 아이콘" width={100} height={100} layout="intrinsic" />
             </div>
           </div>
         </div>

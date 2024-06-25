@@ -3,7 +3,7 @@ import styles from "../styles/home.module.css";
 import ServiceSteps from "./sevice-steps";
 import TopBanner from "./top-banner";
 import MidText from "./mid-text";
-import Link from "next/link";
+import Button from "./resume-btn";
 
 export const metadata: Metadata = {
   title: "Home"
@@ -16,17 +16,6 @@ export default function Home() {
       <MidText />
       <ServiceSteps />
       <Button />
-    </div>
-  );
-}
-
-/** 이력서 작성하기 버튼 */
-function Button() {
-  return (
-    <div className={styles.resume_btn_container}>
-      <Link href="/resume">
-        <button>이력서 작성하기</button>
-      </Link>
     </div>
   );
 }
