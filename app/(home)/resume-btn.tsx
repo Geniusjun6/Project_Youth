@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 
 /** 이력서 작성하기 버튼 */
 export default function Button() {
-  const [isAtCriteria, setIsAtCriteriaHeight] = useState(false);
+  const [isAtCriteria, setIsAtCriteriaHeight] = useState<boolean>(false);
 
-  const handleScroll = () => {
-    const criteriaHeight = 800; // 기준 높이를 설정
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
+  const handleScroll: () => void = () => {
+    const criteriaHeight: number = 800; // 기준 높이를 설정
+    const scrollTop: number = window.scrollY;
+    const windowHeight: number = window.innerHeight;
+    const documentHeight: number = document.documentElement.scrollHeight;
 
     // 현재 스크롤 위치가 기준 근처인지 확인
     if (scrollTop + windowHeight >= documentHeight - criteriaHeight) {
