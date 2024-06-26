@@ -27,9 +27,16 @@ export default function Button() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* tailwind CSS */
+  const scrollEnd: string = "flex h-[52] w-full justify-center items-center transition-all duration-300";
+  const scrolling: string = "fixed bottom-[80px] left-0 w-full flex justify-center p-4 transition-all duration-300";
+
   return (
-    <div className={`${isAtCriteria ? styles.resume_btn_end : styles.resume_btn_scroll}`}>
-      <Link href="/resume" className={styles.resume_btn}>
+    <div className={`${isAtCriteria ? scrollEnd : scrolling}`}>
+      <Link
+        href="/resume"
+        className="w-[800px] min-w-max py-3 shadow-md rounded-[15px] bg-youth_color-m text-text_color-gray font-semibold text-lg text-center hover:bg-youth_color-s"
+      >
         이력서 작성하기
       </Link>
     </div>

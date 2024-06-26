@@ -1,40 +1,39 @@
 import Link from "next/link";
-import styles from "../styles/footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.foot_container}>
-        <div className={styles.top_contents}>
+    <footer className=" bg-youth_color-m p-4 h-60 content-center text-text_color-gray min-w-[1200px]">
+      <div className="content-center w-11/12 mx-auto">
+        <div className="flex content-center justify-between">
           <div>
             <Link href="/">
               <img src="/image/logo_white.png" alt="Logo_White" width={50} height={50}></img>
             </Link>
           </div>
-          <ul className={styles.footer_menu_list}>
+          <ul className="flex space-x-10 items-center">
             <li>
-              <Link className={styles.footer_menu} href="/about-us">
+              <Link className="hover:underline hover:font-bold" href="/about-us">
                 회사소개
               </Link>
             </li>
             <li>
-              <Link className={styles.footer_menu} href="/contact">
+              <Link className="hover:underline hover:font-bold" href="/contact">
                 문의하기
               </Link>
             </li>
             <li>
-              <Link className={styles.footer_menu} href="/policy/service">
+              <Link className="hover:underline hover:font-bold" href="/policy/service">
                 이용약관
               </Link>
             </li>
             <li>
-              <Link className={styles.footer_menu} href="/policy/privacy">
+              <Link className="hover:underline hover:font-bold" href="/policy/privacy">
                 개인정보 처리방침
               </Link>
             </li>
           </ul>
         </div>
-        <div className={styles.corp_info}>
+        <div className="mt-4">
           <span>대표이사 문준식</span>
           <span className="mx-2">|</span>
           <span>이메일 : youth@theyouth.com</span>
