@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import FooterMenu from "./footer-menu";
 
 export default function Footer() {
   return (
@@ -7,30 +9,14 @@ export default function Footer() {
         <div className="flex content-center justify-between">
           <div>
             <Link href="/">
-              <img src="/image/logo_white.png" alt="Logo_White" width={50} height={50}></img>
+              <Image src="/image/logo_white.png" alt="Logo_White" width={50} height={50} />
             </Link>
           </div>
           <ul className="flex space-x-10 items-center">
-            <li>
-              <Link className="hover:underline hover:font-bold" href="/about-us">
-                회사소개
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline hover:font-bold" href="/contact">
-                문의하기
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline hover:font-bold" href="/policy/service">
-                이용약관
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline hover:font-bold" href="/policy/privacy">
-                개인정보 처리방침
-              </Link>
-            </li>
+            <FooterMenu menuName={"회사소개"} href={"/about-us"} />
+            <FooterMenu menuName={"문의하기"} href={"/contact"} />
+            <FooterMenu menuName={"이용약관"} href={"/policy/service"} />
+            <FooterMenu menuName={"개인정보 처리방침"} href={"/policy/privacy"} />
           </ul>
         </div>
         <div className="mt-4">

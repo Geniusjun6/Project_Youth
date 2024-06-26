@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import NavMenu from "./nav-menu";
+import Image from "next/image";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function Navigation() {
         <div className="flex content-center space-x-10 shrink-0;">
           <li>
             <Link href="/">
-              <img src="/image/logo_white.png" alt="Logo" width={70} height={70} />
+              <Image src="/image/logo_white.png" alt="Logo" width={70} height={70} />
             </Link>
           </li>
           <button className="md:hidden block;" onClick={toggleMenu}>
