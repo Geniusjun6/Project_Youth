@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import NavMenu from "./nav-menu";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,41 +32,13 @@ export default function Navigation() {
             </svg>
           </button>
         </div>
-        <div className={`flex content-center space-x-10 shrink-0 ${isOpen ? "show" : "hide"} md:flex`}>
-          <li>
-            <Link
-              className="block h-full content-center rounded-md px-4 hover:bg-youth_color-s/45 hover:font-bold cursor-pointer"
-              href="/career"
-            >
-              경력 관리하기
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="block h-full content-center rounded-md px-4 hover:bg-youth_color-s/45 hover:font-bold cursor-pointer"
-              href="/resume"
-            >
-              이력서 작성하기
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="block h-full content-center rounded-md px-4 hover:bg-youth_color-s/45 hover:font-bold cursor-pointer"
-              href="/contact"
-            >
-              문의하기
-            </Link>
-          </li>
+        <div className={`flex content-center space-x-10 shrink-0 ${isOpen ? "show" : "hide"}`}>
+          <NavMenu menuName={"경력 관리하기"} href={"/career"} />
+          <NavMenu menuName={"이력서 작성하기"} href={"/resume"} />
+          <NavMenu menuName={"문의하기"} href={"/contact"} />
         </div>
-        <div className={`flex content-center space-x-10 shrink-0 ${isOpen ? "show" : "hide"} md:flex`}>
-          <li>
-            <Link
-              className="block h-full content-center rounded-md px-4 hover:bg-youth_color-s/45 hover:font-bold cursor-pointer"
-              href="/sign-in"
-            >
-              로그인
-            </Link>
-          </li>
+        <div className={`flex content-center space-x-10 shrink-0 ${isOpen ? "show" : "hide"}`}>
+          <NavMenu menuName={"로그인"} href={"/sign-in"} />
         </div>
       </ul>
     </nav>
