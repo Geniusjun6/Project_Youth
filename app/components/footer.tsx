@@ -4,7 +4,7 @@ import FooterMenu from "./footer-menu";
 
 export default function Footer() {
   return (
-    <footer className=" bg-youth_color-m p-4 h-60 content-center text-text_color-gray min-w-[1200px]">
+    <footer className=" bg-youth_color-m p-4 h-60 content-center text-text_color-gray w-screen min-w-[320px]">
       <div className="content-center w-11/12 mx-auto">
         <div className="flex content-center justify-between">
           <div>

@@ -16,7 +16,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="z-40 fixed top-0 left-0 right-0 shadow-md bg-youth_color-m p-4 mb-4 content-center text-text_color-gray text-sm md:text-xl">
+    <nav className="w-screen z-40 fixed top-0 left-0 right-0 shadow-md bg-youth_color-m p-4 mb-4 content-center text-text_color-gray text-sm md:text-xl">
       <ul className="flex justify-between w-11/12 min-w-[320px] mx-auto ">
         <div className="flex content-center space-x-10">
           <li className="flex justify-center items-center">
