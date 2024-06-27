@@ -35,7 +35,7 @@ export default function Button() {
     <div className={`${isAtCriteria ? scrollEnd : scrolling}`}>
       <Link
         href="/resume"
-        className="w-[800px] min-w-max py-3 shadow-md rounded-[15px] bg-youth_color-m text-text_color-gray font-semibold text-lg text-center hover:bg-youth_color-s"
+        className="w-[800px] min-w-max py-3 shadow-md rounded-lg md:rounded-[15px] text-sm md:text-lg bg-youth_color-m text-text_color-gray font-semibold text-center hover:bg-youth_color-s"
       >
         이력서 작성하기
       </Link>
