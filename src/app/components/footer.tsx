@@ -20,7 +20,7 @@ export default function Footer() {
             <FooterMenu menuName={"개인정보 처리방침"} href={"/policy/privacy"} />
           </ul>
         </div>
-        <div className="text-[11px] md:text-md mt-4">
+        <div className="text-[11px] md:text-lg mt-4">
           <span>대표이사 문준식</span>
           <span className="mx-2">|</span>
           <span>이메일 : youth@theyouth.com</span>
