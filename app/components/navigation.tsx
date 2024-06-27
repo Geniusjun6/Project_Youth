@@ -34,9 +34,9 @@ export default function Navigation() {
           <div className="flex">
             <NavMenu menuName={"로그인"} href={"/sign-in"} />
           </div>
-          <button className="flex md:hidden text-3xl justify-center items-center p-2">
+          <button className="flex md:hidden text-xl justify-center items-center p-2">
             {isOpen ? (
-              <FontAwesomeIcon className="text-2xl" onClick={toggleMenu} icon={faX} />
+              <FontAwesomeIcon className="text-xl" onClick={toggleMenu} icon={faX} />
             ) : (
               <FontAwesomeIcon onClick={toggleMenu} icon={faBars} />
             )}
