@@ -10,5 +10,5 @@
 }
 
 main {
-  @apply py-8 mt-20 min-h-screen min-w-[1200px]  bg-bg_color;
+  @apply py-8 mt-20 min-h-screen bg-bg_color shrink-0 min-w-[320px];
 }
