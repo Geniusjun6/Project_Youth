@@ -16,7 +16,7 @@ export default function ServiceStep({ subTitle, mainTitle, subscription, href, i
   return (
     <Link
       href={href}
-      className="relative shadow-md bg-bg_white min-w-[366px] max-w-[500px] min-h-[156px] rounded-lg md:min-w-[400px] md:w-[480px] md:h-[350px] md:rounded-3xl md:transition-all md:duration-300 md:ease-in-out md:hover:w-[700px] md:hover:bg-youth_color-s group"
+      className="relative shadow-md bg-bg_white min-w-[366px] max-w-[700px] min-h-[156px] rounded-lg md:min-w-[400px] md:w-[480px] md:h-[350px] md:rounded-3xl md:transition-all md:duration-300 md:ease-in-out md:hover:w-[700px] md:hover:bg-youth_color-s group"
     >
       <div className="absolute w-full h-full p-5 flex flex-col justify-between md:p-10">
         <div>
@@ -33,7 +33,7 @@ export default function ServiceStep({ subTitle, mainTitle, subscription, href, i
             <Image className="w-6 h-6 md:w-16 md:h-16" src={CTA_Btn} alt="바로가기 버튼" />
           </div>
           <div>
-            <Image className="w-16 h-16 md:w-32 md:h-32" src={imageSrc} alt={imageAlt} layout="intrinsic" />
+            <Image className="w-16 h-16 md:w-32 md:h-32" src={imageSrc} alt={imageAlt} />
           </div>
         </div>
       </div>

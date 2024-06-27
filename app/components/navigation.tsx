@@ -17,7 +17,7 @@ export default function Navigation() {
 
   return (
     <nav className="w-screen z-40 fixed top-0 left-0 right-0 shadow-md bg-youth_color-m p-4 mb-4 content-center text-text_color-gray text-sm md:text-xl">
-      <ul className="flex justify-between w-11/12 min-w-[320px] mx-auto ">
+      <ul className="flex justify-between w-11/12 min-w-[320px] mx-auto z-30">
         <div className="flex content-center space-x-10">
           <li className="flex justify-center items-center">
             <Link href="/">
@@ -44,12 +44,16 @@ export default function Navigation() {
         </div>
       </ul>
       {/* 모바일 메뉴 */}
-      <ul className={`${isOpen ? "flex" : "hidden"} flex-col md:hidden px-3 py-2 `}>
+      <ul className={`${isOpen ? "flex" : "hidden"} flex-col px-3 py-2 md:hidden`}>
         <hr className="mb-4" />
         <NavMenu menuName={"경력 관리하기"} href={"/career"} css="p-4" />
         <NavMenu menuName={"이력서 작성하기"} href={"/resume"} css="p-4" />
         <NavMenu menuName={"문의하기"} href={"/contact"} css="p-4" />
       </ul>
+      <div
+        onClick={toggleMenu}
+        className={`${isOpen ? "fixed" : "hidden"} mt-[269px] inset-0 bg-bg_gradient bg-opacity-50`}
+      ></div>
     </nav>
   );
 }
