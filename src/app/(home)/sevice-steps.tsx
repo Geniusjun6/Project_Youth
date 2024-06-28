@@ -1,7 +1,7 @@
 import ServiceStep from "./service-step";
-import career from "../../public/image/career.svg";
-import resume from "../../public/image/resume.svg";
-import pdf from "../../public/image/pdf.svg";
+import career from "/public/image/career.svg";
+import resume from "/public/image/resume.svg";
+import pdf from "/public/image/pdf.svg";
 
 export default function ServiceSteps() {
   return (

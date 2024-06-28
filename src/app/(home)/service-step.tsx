@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import CTA_Btn from "../../public/image/CTA-btn.svg";
+import CTA_Btn from "/public/image/CTA-btn.svg";
 
 /* ServiceStep에 들어갈 props 타입 정의 */
 interface ServiceStepProps {

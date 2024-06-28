@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FooterMenu from "./footer-menu";
-import logo from "../../public/image/logo.svg";
+import logo from "/public/image/logo.svg";
 
 export default function Footer() {
   return (

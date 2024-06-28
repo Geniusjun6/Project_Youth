@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import styles from "../styles/home.module.css";
 import { useEffect, useState } from "react";
 
 /** 이력서 작성하기 버튼 */
