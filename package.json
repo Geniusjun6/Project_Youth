@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev"
+    "dev:backend": "cd backend && nest start --watch",
+    "dev:frontend": "cd frontend && next dev"
   },
   "keywords": [],
   "author": "",
