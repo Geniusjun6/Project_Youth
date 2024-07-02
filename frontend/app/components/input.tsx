@@ -26,7 +26,7 @@ export default function LabelAndInput({
         {labelDescription ? <p>{labelDescription}</p> : ""}
       </label>
       <input
-        className="p-4 border md:w-full md:rounded-lg"
+        className="p-2.5 border w-full rounded-md md:p-4 md:rounded-lg"
         type={type}
         name={name}
         id={id}
