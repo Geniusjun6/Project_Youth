@@ -8,6 +8,11 @@ import { CreateUserDto } from "./dto/user.dto";
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  /**
+   * 이메일 회원가입
+   * @param createUserDto
+   * @returns
+   */
   @Post("sign-up")
   async signUpUser(@Body() createUserDto: CreateUserDto) {
     const { password, passwordCheck } = createUserDto;
