@@ -23,7 +23,9 @@ module.exports = {
       },
       'bg_color': '#F9F9F9',
       'bg_gradient': '#000000',
-      'bg_white': '#FFFFFF'
+      'bg_white': '#FFFFFF',
+      'kakao': '#FDDC3F',
+      'naver': '#03C75A'
     },
   },
   plugins: [],
