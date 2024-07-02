@@ -8,14 +8,14 @@ export const typeOrmModuleAsyncOptions: TypeOrmModuleAsyncOptions = {
   useFactory: (configService: ConfigService) => ({
     namingStrategy: new SnakeNamingStrategy(),
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "ProjectYouth",
-    database: "youth-app",
+    host: configService.get<string>("DB_HOST"),
+    port: configService.get<number>("DB_PORT"),
+    username: configService.get<string>("DB_USERNAME"),
+    password: configService.get<string>("DB_PASSWORD"),
+    database: configService.get<string>("DB_NAME"),
     synchronize: true,
     autoLoadEntities: true,
-    entities: [__dirname + "/../**/*.entity.{js,ts}"],
+    entities: [],
     logging: false
   })
 };

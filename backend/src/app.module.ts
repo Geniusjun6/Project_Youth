@@ -7,8 +7,8 @@ import { typeOrmModuleAsyncOptions } from "./config/database.config";
   imports: [
     ConfigModule.forRoot({
       isGlobal: true
-    })
-    // TypeOrmModule.forRoot(typeOrmModuleAsyncOptions)
+    }),
+    TypeOrmModule.forRootAsync(typeOrmModuleAsyncOptions)
   ],
   controllers: [],
   providers: []
