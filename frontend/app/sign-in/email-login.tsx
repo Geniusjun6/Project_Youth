@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import LabelAndInput from "../components/input";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function EmailLogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -32,6 +35,7 @@ export default function EmailLogIn() {
             placeholder={"이메일을 입력해주세요."}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            refValue={emailRef}
           />
           <LabelAndInput
             label={"비밀번호"}
@@ -41,6 +45,7 @@ export default function EmailLogIn() {
             placeholder={"비밀번호를 입력해주세요."}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            refValue={passwordRef}
           />
         </form>
         <button

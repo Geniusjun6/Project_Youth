@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 /** 이력서 작성하기 버튼 */
-export default function Button() {
+export default function HomeResumeButton() {
   const [isAtCriteria, setIsAtCriteriaHeight] = useState<boolean>(false);
 
   const handleScroll: () => void = () => {
