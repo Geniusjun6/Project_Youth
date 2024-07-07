@@ -5,7 +5,7 @@ const initialState: UserProps = {
   email: "",
   password: "",
   passwordCheck: "",
-  userName: "",
+  name: "",
   phone: "",
   gender: ""
 };
@@ -19,8 +19,8 @@ const signUpSlice = createSlice({
       state.password = action.payload.password;
       state.passwordCheck = action.payload.passwordCheck;
     },
-    setStep2: (state, action: PayloadAction<{ userName: string; phone: string }>) => {
-      state.userName = action.payload.userName;
+    setStep2: (state, action: PayloadAction<{ name: string; phone: string }>) => {
+      state.name = action.payload.name;
       state.phone = action.payload.phone;
     },
     genderSelect: (state, action: PayloadAction<{ gender: string }>) => {

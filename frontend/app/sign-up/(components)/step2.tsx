@@ -10,14 +10,14 @@ export default function Step2() {
   const phoneRef = useRef(null);
 
   const dispatch = useDispatch<SignUpDispatch>();
-  const { userName, phone } = useSelector((state: RootState) => state.signUp);
+  const { name, phone } = useSelector((state: RootState) => state.signUp);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     dispatch(
       setStep2({
-        userName: name === "name" ? value : userName,
-        phone: name === "phone" ? value : phone
+        name: id === "name" ? value : name,
+        phone: id === "phone" ? value : phone
       })
     );
   };
@@ -36,7 +36,7 @@ export default function Step2() {
           name={"name"}
           id={"name"}
           placeholder={"ex) 김청춘"}
-          value={userName}
+          value={name}
           onChange={handleChange}
           refValue={nameRef}
         />

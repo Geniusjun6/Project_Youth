@@ -9,12 +9,12 @@ export default function Step1() {
   const { email, password, passwordCheck } = useSelector((state: RootState) => state.signUp);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { id, value } = e.target;
     dispatch(
       setStep1({
-        email: name === "email" ? value : email,
-        password: name === "password" ? value : password,
-        passwordCheck: name === "passwordCheck" ? value : passwordCheck
+        email: id === "email" ? value : email,
+        password: id === "password" ? value : password,
+        passwordCheck: id === "passwordCheck" ? value : passwordCheck
       })
     );
   };

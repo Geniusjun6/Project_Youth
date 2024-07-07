@@ -2,7 +2,7 @@ export interface UserProps {
   email: string;
   password: string;
   passwordCheck: string;
-  userName: string;
+  name: string;
   phone: string;
   gender: string;
 }
