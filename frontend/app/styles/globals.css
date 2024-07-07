@@ -10,5 +10,17 @@
 }
 
 main {
-  @apply py-8 mt-20 min-h-fit bg-bg_color shrink-0 min-w-[320px];
+  @apply py-8 mt-20 min-h-fit h-auto bg-bg_color shrink-0 mx-auto min-w-[320px] w-screen;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox  */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
