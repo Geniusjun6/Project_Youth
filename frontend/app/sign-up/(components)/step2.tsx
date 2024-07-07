@@ -5,10 +5,7 @@ import GenderSelect from "./select-gender";
 import { RootState, SignUpDispatch } from "../util/store";
 import { setStep2 } from "../util/sign-up.slice";
 
-export default function Step2() {
-  const nameRef = useRef(null);
-  const phoneRef = useRef(null);
-
+export default function Step2({ nameRef, phoneRef }) {
   const dispatch = useDispatch<SignUpDispatch>();
   const { name, phone } = useSelector((state: RootState) => state.signUp);
 

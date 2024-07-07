@@ -19,7 +19,8 @@ module.exports = {
       },
       'text_color': {
         'gray': '#f2f2f2',
-        'gray2': '#8d8d8d'
+        'gray2': '#8d8d8d',
+        'red': '#FF3434'
       },
       'bg_color': '#F9F9F9',
       'bg_gradient': '#000000',

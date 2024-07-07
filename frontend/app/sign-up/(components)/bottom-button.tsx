@@ -4,9 +4,11 @@ import { RootState } from "../util/store";
 import { UserProps } from "../model/user";
 import { submitUserData } from "../repository/user.sign-up.repository";
 
-export default function BottonButtons() {
+export default function BottonButtons({ nameRef, phoneRef }) {
   const userData: UserProps = useSelector((state: RootState) => state.signUp);
+  const { email, password, passwordCheck, name, phone }: UserProps = userData;
 
+  /** 회원가입 버튼 클릭 시 데이터 서버로 전송 */
   const handleSubmitUserData = () => {
     submitUserData(userData);
   };
