@@ -1,16 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import LabelAndInput from "../../components/input";
 import { SignUpDispatch, RootState } from "../util/store";
-import { setStep1 } from "../util/sign-up.slice";
+import { setDuplicateEmail, setStep1 } from "../util/sign-up.slice";
 import { useEffect, useState } from "react";
 import { validateEmail, validatePassword } from "../util/validation";
+import { checkDuplicateEmail } from "../repository/user.sign-up.repository";
 
 export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
   const dispatch = useDispatch<SignUpDispatch>();
-  const { email, password, passwordCheck } = useSelector((state: RootState) => state.signUp);
+  const { email, password, passwordCheck, isDuplicateEmail } = useSelector((state: RootState) => state.signUp);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
+    // 이메일이 변경될 때 isDuplicateEmail 값을 false로 변경하여 다시 체크하게 함
+    if (id === "email") {
+      dispatch(
+        setDuplicateEmail({
+          isDuplicateEmail: false
+        })
+      );
+    }
+
     dispatch(
       setStep1({
         email: id === "email" ? value : email,
@@ -24,17 +34,34 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
   const [isValidatePassword, setValidatePassword] = useState(false);
   const [isValidatePasswordCheck, setValidatePasswordCheck] = useState(false);
 
+  // 이메일 값이 변경될 때마다 이메일 유효성 검사 처리
   useEffect(() => {
     setValidateEmail(validateEmail(email));
   }, [email]);
 
+  // 비밀번호 값이 변경될 때마다 비밀번호 유효성 검사 처리
   useEffect(() => {
     setValidatePassword(validatePassword(password));
   }, [password]);
 
+  // 비밀번호 확인 값이 변경될 때마다 비밀번호 유효성 검사 처리
   useEffect(() => {
     setValidatePasswordCheck(password === passwordCheck);
   }, [passwordCheck]);
+
+  // 중복체크 버튼 클릭 시 서버에서 중복체크 후 리턴값으로 적용(true/false)
+  const handleCheckEmail = async () => {
+    if (!isValidateEmail) {
+      alert("올바른 이메일 형식이 아닙니다.");
+      return;
+    }
+
+    dispatch(
+      setDuplicateEmail({
+        isDuplicateEmail: await checkDuplicateEmail(email)
+      })
+    );
+  };
 
   return (
     <div className="flex flex-col justify-center space-y-8 w-11/12 mt-5 mx-auto md:w-[530px] md:mt-10">
@@ -56,15 +83,24 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
         />
         <div className="flex space-x-3 items-center justify-end">
           <p
-            className={`${isValidateEmail ? null : "text-text_color-red"} "text-sm" ${
-              email.length === 0 ? "hidden" : null
-            }`}
+            className={`${
+              isValidateEmail ? (isDuplicateEmail ? "text-youth_color-m" : null) : "text-text_color-red"
+            } "text-sm" ${email.length === 0 ? "hidden" : null}`}
           >
-            {isValidateEmail ? "중복 체크를 해주세요." : "잘못된 이메일 입니다."}
+            {isValidateEmail
+              ? isDuplicateEmail
+                ? "사용이 가능한 이메일 입니다."
+                : "이메일 중복체크를 해주세요."
+              : "사용할 수 없는 이메일 입니다."}
           </p>
           <button
-            onClick={(e) => console.log("h")}
-            className="bg-youth_color-m text-text_color-gray rounded-md h-8 hover:bg-youth_color-m/70 md:rounded-lg px-4 md:h-10"
+            onClick={handleCheckEmail}
+            disabled={isDuplicateEmail}
+            className={`${
+              isDuplicateEmail
+                ? "bg-text_color-gray2 pointer-events-none"
+                : "bg-youth_color-m hover:bg-youth_color-m/70"
+            }  text-text_color-gray rounded-md h-8 md:rounded-lg px-4 md:h-10"`}
           >
             중복 체크
           </button>

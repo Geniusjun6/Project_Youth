@@ -4,7 +4,7 @@ import { UserProps } from "../model/user";
 const apiUrl = "http://localhost:8000/api/user/sign-up";
 
 /** 이메일 중복 체크 API 요청(임시) */
-export const reqCheckEmail = async (email: string) => {
+export const checkDuplicateEmail = async (email: string) => {
   return true;
 };
 

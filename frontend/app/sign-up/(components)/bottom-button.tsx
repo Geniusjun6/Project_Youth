@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../util/store";
-import { UserProps } from "../model/user";
+import { User, UserProps } from "../model/user";
 import { submitUserData } from "../repository/user.sign-up.repository";
 
 export default function BottonButtons({ nameRef, phoneRef }) {
-  const userData: UserProps = useSelector((state: RootState) => state.signUp);
-  const { email, password, passwordCheck, name, phone }: UserProps = userData;
+  const { email, password, passwordCheck, name, phone, gender }: UserProps = useSelector(
+    (state: RootState) => state.signUp
+  );
+  const newUserData = new User(email, password, passwordCheck, name, phone, gender);
 
   /** 회원가입 버튼 클릭 시 데이터 서버로 전송 */
   const handleSubmitUserData = () => {
-    submitUserData(userData);
+    submitUserData(newUserData);
   };
 
   return (

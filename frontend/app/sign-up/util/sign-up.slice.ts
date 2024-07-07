@@ -1,13 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserProps } from "../model/user";
 
-const initialState: UserProps = {
+interface InitialNewUserState extends UserProps {
+  isDuplicateEmail: boolean;
+}
+
+const initialState: InitialNewUserState = {
   email: "",
   password: "",
   passwordCheck: "",
   name: "",
   phone: "",
-  gender: ""
+  gender: "",
+  isDuplicateEmail: false
 };
 
 const signUpSlice = createSlice({
@@ -19,6 +24,9 @@ const signUpSlice = createSlice({
       state.password = action.payload.password;
       state.passwordCheck = action.payload.passwordCheck;
     },
+    setDuplicateEmail: (state, action: PayloadAction<{ isDuplicateEmail: boolean }>) => {
+      state.isDuplicateEmail = action.payload.isDuplicateEmail;
+    },
     setStep2: (state, action: PayloadAction<{ name: string; phone: string }>) => {
       state.name = action.payload.name;
       state.phone = action.payload.phone;
@@ -29,6 +37,6 @@ const signUpSlice = createSlice({
   }
 });
 
-export const { setStep1, setStep2, genderSelect } = signUpSlice.actions;
+export const { setStep1, setStep2, genderSelect, setDuplicateEmail } = signUpSlice.actions;
 
 export default signUpSlice.reducer;
