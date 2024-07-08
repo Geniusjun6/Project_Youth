@@ -1,5 +1,5 @@
-import { BadRequestException, Body, Controller, Get, Post } from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
+import { BadRequestException, Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { ApiTags, PickType } from "@nestjs/swagger";
 import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/user.dto";
 
@@ -30,7 +30,30 @@ export class UserController {
     } catch (error) {
       return {
         success: false,
-        message: error.response.message
+        message: error.message
+      };
+    }
+  }
+
+  /**
+   * 이메일로 유저 찾기
+   * @param email 사용자 이메일
+   * @returns 사용자 존재 여부(boolean)
+   */
+  @Get("find-user")
+  async findUserByEmail(@Query("email") email: string) {
+    try {
+      const isExitUser: boolean = await this.userService.findUserByEmail(email);
+
+      return {
+        success: true,
+        message: "okay",
+        data: isExitUser
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message
       };
     }
   }
