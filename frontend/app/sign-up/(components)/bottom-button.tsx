@@ -11,7 +11,7 @@ export default function BottonButtons({ emailRef, passwordRef, passwordCheckRef,
   const router = useRouter();
 
   const newUser: NewUserState = useSelector((state: RootState) => state.signUp);
-  const { isDuplicateEmail, ...userProps } = newUser;
+  const { isDuplicateEmail, checkEmail, ...userProps } = newUser;
 
   const userRefs: UserRefs = { emailRef, passwordRef, passwordCheckRef, nameRef, phoneRef };
 
