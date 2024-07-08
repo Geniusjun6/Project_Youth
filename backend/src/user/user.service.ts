@@ -14,26 +14,30 @@ export class UserService {
     private readonly configService: ConfigService
   ) {}
 
+  /* 회원가입 */
   async signUpUser(createUserDto: CreateUserDto) {
     const { email, password, name, phone, gender }: CreateUserDto = createUserDto;
 
-    try {
-      const hashRound: number = this.configService.get<number>("PASSWORD_HASH_ROUND");
-      const hashedPassword: string = hashSync(password, Number(hashRound));
+    const hashRound: number = this.configService.get<number>("PASSWORD_HASH_ROUND");
+    const hashedPassword: string = hashSync(password, Number(hashRound));
 
-      await this.userRepository.save({
-        email,
-        password: hashedPassword,
-        name,
-        phone,
-        gender
-      });
-    } catch (error) {
-      console.error("회원가입 에러 발생", error);
-      return {
-        success: false,
-        message: error.response.message
-      };
+    await this.userRepository.save({
+      email,
+      password: hashedPassword,
+      name,
+      phone,
+      gender
+    });
+  }
+
+  /* 이메일로 유저 찾기 */
+  async findUserByEmail(email: string) {
+    const user: User = await this.userRepository.findOneBy({ email });
+
+    if (user) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
