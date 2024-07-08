@@ -1,18 +1,31 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../util/store";
-import { User, UserProps } from "../model/user";
+import { User, UserRefs } from "../model/user";
 import { submitUserData } from "../repository/user.sign-up.repository";
+import { validateNewUserData } from "../util/validation";
+import { NewUserState } from "../model/user";
+import { useRouter } from "next/navigation";
 
-export default function BottonButtons({ nameRef, phoneRef }) {
-  const { email, password, passwordCheck, name, phone, gender }: UserProps = useSelector(
-    (state: RootState) => state.signUp
-  );
-  const newUserData = new User(email, password, passwordCheck, name, phone, gender);
+export default function BottonButtons({ emailRef, passwordRef, passwordCheckRef, nameRef, phoneRef }) {
+  const router = useRouter();
+
+  const newUser: NewUserState = useSelector((state: RootState) => state.signUp);
+  const { isDuplicateEmail, ...userProps } = newUser;
+
+  const userRefs: UserRefs = { emailRef, passwordRef, passwordCheckRef, nameRef, phoneRef };
+
+  // 유저 클래스를 이용하여 신규 유저 만들기
+  const newUserData = new User(userProps);
 
   /** 회원가입 버튼 클릭 시 데이터 서버로 전송 */
   const handleSubmitUserData = () => {
-    submitUserData(newUserData);
+    if (validateNewUserData(newUser, userRefs)) {
+      submitUserData(newUserData);
+      router.push("/sign-up/complete");
+    } else {
+      return;
+    }
   };
 
   return (

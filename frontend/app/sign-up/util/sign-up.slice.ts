@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserProps } from "../model/user";
+import { NewUserState } from "../model/user";
 
-interface InitialNewUserState extends UserProps {
-  isDuplicateEmail: boolean;
-}
-
-const initialState: InitialNewUserState = {
+export const initialState: NewUserState = {
   email: "",
   password: "",
   passwordCheck: "",
