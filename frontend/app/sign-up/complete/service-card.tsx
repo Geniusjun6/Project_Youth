@@ -13,7 +13,7 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ title, imageSrc, imageAlt, href }: ServiceCardProps) {
   return (
-    <li className="w-80 h-80 group">
+    <li className="md:w-80 md:h-80 md:block hidden group">
       <Link
         href={href}
         className="bg-bg_white shadow-md rounded-xl p-8 w-full h-full flex flex-col justify-between group-hover:cursor-pointer group-hover:bg-youth_color-s group-hover:text-text_color-gray"

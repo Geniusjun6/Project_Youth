@@ -70,7 +70,7 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
   return (
     <div className="flex flex-col justify-center space-y-8 w-11/12 mt-5 mx-auto md:w-[530px] md:mt-10">
       <div className="space-y-2">
-        <h1 className="w-full text-start text-xl font-bold">1. 이메일 및 비밀번호</h1>
+        <h1 className="w-full text-start text-xl font-bold">1. 이메일 및 비밀번호를 알려주세요.</h1>
         <hr />
       </div>
       <div className="space-y-3">

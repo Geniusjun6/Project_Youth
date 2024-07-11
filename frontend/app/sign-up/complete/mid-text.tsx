@@ -1,7 +1,36 @@
+"use client";
+
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { RootState, SignUpDispatch } from "../util/store";
+import { setCheckCompeleteSignUp } from "../util/sign-up-check.slice";
+import { useRouter } from "next/navigation";
+
 export default function SignUpCompleteText() {
+  const router = useRouter();
+  const dispatch = useDispatch<SignUpDispatch>();
+  const isSignUpCompelete = useSelector((state: RootState) => state.checkSignUp);
+
+  useEffect(() => {
+    if (!isSignUpCompelete.isCompeleteSignUp) {
+      router.push("/sign-up");
+      alert("잘못된 접근입니다.");
+    } else {
+      dispatch(
+        setCheckCompeleteSignUp({
+          isCompeleteSignUp: false
+        })
+      );
+    }
+  }, []);
+
+  if (!isSignUpCompelete) {
+    return null; // Sign-up이 완료되지 않았을 때는 아무것도 렌더링하지 않음
+  }
+
   return (
     <div className="h-full mx-auto text-center mt-5 md:mt-10 px-4">
       <FontAwesomeIcon icon={faUserCheck} className="text-8xl text-youth_color-m" fixedWidth />

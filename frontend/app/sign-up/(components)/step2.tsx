@@ -22,7 +22,7 @@ export default function Step2({ nameRef, phoneRef }) {
   return (
     <div className="flex flex-col justify-center space-y-8 mt-20 mx-auto w-11/12 md:w-[530px] md:mt-20">
       <div className="space-y-2">
-        <h1 className="w-full text-start text-xl font-bold">2. 개인정보</h1>
+        <h1 className="w-full text-start text-xl font-bold">2. 채용 담당자가 확인할 정보를 적어주세요.</h1>
         <hr />
       </div>
       <div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function SignInBtn() {
   return (
-    <div className="w-full mt-10 md:mt-10 flex justify-center items-center">
+    <div className="w-full mt-5 md:mt-10 flex justify-center items-center">
       <Link href="/career">
         <button
           className="
