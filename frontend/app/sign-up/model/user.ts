@@ -27,6 +27,7 @@ export class User implements UserProps {
 
 // redux initialState 용 인터페이스
 export interface NewUserState extends UserProps {
+  checkEmail: boolean;
   isDuplicateEmail: boolean;
 }
 

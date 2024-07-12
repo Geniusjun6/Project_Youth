@@ -1,17 +1,19 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { RootState } from "../util/store";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, SignUpDispatch } from "../util/store";
 import { User, UserRefs } from "../model/user";
 import { submitUserData } from "../repository/user.sign-up.repository";
 import { validateNewUserData } from "../util/validation";
 import { NewUserState } from "../model/user";
 import { useRouter } from "next/navigation";
+import { setCheckCompeleteSignUp } from "../util/sign-up-check.slice";
 
 export default function BottonButtons({ emailRef, passwordRef, passwordCheckRef, nameRef, phoneRef }) {
   const router = useRouter();
+  const dispatch = useDispatch<SignUpDispatch>();
 
   const newUser: NewUserState = useSelector((state: RootState) => state.signUp);
-  const { isDuplicateEmail, ...userProps } = newUser;
+  const { isDuplicateEmail, checkEmail, ...userProps } = newUser;
 
   const userRefs: UserRefs = { emailRef, passwordRef, passwordCheckRef, nameRef, phoneRef };
 
@@ -22,6 +24,14 @@ export default function BottonButtons({ emailRef, passwordRef, passwordCheckRef,
   const handleSubmitUserData = () => {
     if (validateNewUserData(newUser, userRefs)) {
       submitUserData(newUserData);
+
+      // 회원가입 완료 상태로 변경
+      dispatch(
+        setCheckCompeleteSignUp({
+          isCompeleteSignUp: true
+        })
+      );
+
       router.push("/sign-up/complete");
     } else {
       return;

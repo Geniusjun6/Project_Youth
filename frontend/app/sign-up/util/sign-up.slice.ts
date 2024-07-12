@@ -8,6 +8,7 @@ export const initialState: NewUserState = {
   name: "",
   phone: "",
   gender: "",
+  checkEmail: false,
   isDuplicateEmail: false
 };
 
@@ -20,8 +21,9 @@ const signUpSlice = createSlice({
       state.password = action.payload.password;
       state.passwordCheck = action.payload.passwordCheck;
     },
-    setDuplicateEmail: (state, action: PayloadAction<{ isDuplicateEmail: boolean }>) => {
+    setDuplicateEmail: (state, action: PayloadAction<{ isDuplicateEmail: boolean; checkEmail: boolean }>) => {
       state.isDuplicateEmail = action.payload.isDuplicateEmail;
+      state.checkEmail = action.payload.checkEmail;
     },
     setStep2: (state, action: PayloadAction<{ name: string; phone: string }>) => {
       state.name = action.payload.name;

@@ -1,12 +1,18 @@
-import { reqCheckEmail } from "../repository/user.sign-up.repository";
+import { AxiosResponse } from "axios";
+import { checkDuplicateEmail } from "../repository/user.sign-up.repository";
 
 /** 버튼 클릭 시 이메일 중복 체크 함수 */
 export const checkEmailAvailability = async (email: string): Promise<boolean> => {
   try {
-    const isAvailable = await reqCheckEmail(email);
+    const user = await checkDuplicateEmail(email);
+
+    /* 유저가 존재한다면 가입이 불가능하기 반대를 가져야 한다. */
+    const isAvailable: boolean = !user.data.data;
+    console.log("isAvailable: ", isAvailable);
+
     return isAvailable;
   } catch (error) {
-    console.error("Error checking email availability:", error);
+    console.error("중복체크 시 에러발생", error.message);
   }
 };
 

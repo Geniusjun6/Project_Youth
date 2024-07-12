@@ -4,11 +4,13 @@ import { SignUpDispatch, RootState } from "../util/store";
 import { setDuplicateEmail, setStep1 } from "../util/sign-up.slice";
 import { useEffect, useState } from "react";
 import { validateEmail, validatePassword } from "../util/validation";
-import { checkDuplicateEmail } from "../repository/user.sign-up.repository";
+import { checkEmailAvailability } from "../service/sign-up.service";
 
 export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
   const dispatch = useDispatch<SignUpDispatch>();
-  const { email, password, passwordCheck, isDuplicateEmail } = useSelector((state: RootState) => state.signUp);
+  const { email, password, passwordCheck, isDuplicateEmail, checkEmail } = useSelector(
+    (state: RootState) => state.signUp
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -16,6 +18,7 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
     if (id === "email") {
       dispatch(
         setDuplicateEmail({
+          checkEmail: false,
           isDuplicateEmail: false
         })
       );
@@ -58,7 +61,8 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
 
     dispatch(
       setDuplicateEmail({
-        isDuplicateEmail: await checkDuplicateEmail(email)
+        checkEmail: true,
+        isDuplicateEmail: await checkEmailAvailability(email)
       })
     );
   };
@@ -66,7 +70,7 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
   return (
     <div className="flex flex-col justify-center space-y-8 w-11/12 mt-5 mx-auto md:w-[530px] md:mt-10">
       <div className="space-y-2">
-        <h1 className="w-full text-start text-xl font-bold">1. 이메일 및 비밀번호</h1>
+        <h1 className="w-full text-start text-xl font-bold">1. 이메일 및 비밀번호를 알려주세요.</h1>
         <hr />
       </div>
       <div className="space-y-3">
@@ -84,12 +88,18 @@ export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
         <div className="flex space-x-3 items-center justify-end">
           <p
             className={`${
-              isValidateEmail ? (isDuplicateEmail ? "text-youth_color-m" : null) : "text-text_color-red"
+              isValidateEmail
+                ? isDuplicateEmail
+                  ? "text-youth_color-m"
+                  : "text-text_color-red"
+                : "text-text_color-red"
             } "text-sm" ${email.length === 0 ? "hidden" : null}`}
           >
             {isValidateEmail
-              ? isDuplicateEmail
-                ? "사용이 가능한 이메일 입니다."
+              ? checkEmail
+                ? isDuplicateEmail
+                  ? "사용이 가능한 이메일 입니다."
+                  : "중복된 이메일입니다."
                 : "이메일 중복체크를 해주세요."
               : "사용할 수 없는 이메일 입니다."}
           </p>

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import signUpReducer from "./sign-up.slice";
+import checkSignUpReducer from "./sign-up-check.slice";
 
 export const store = configureStore({
   reducer: {
-    signUp: signUpReducer
+    signUp: signUpReducer,
+    checkSignUp: checkSignUpReducer
   }
 });
 
