@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { checkDuplicateEmail } from "../repository/user.sign-up.repository";
+import { checkDuplicateEmail } from "../(repository)/user.sign-up.repository";
 
 /** 버튼 클릭 시 이메일 중복 체크 함수 */
 export const checkEmailAvailability = async (email: string): Promise<boolean> => {

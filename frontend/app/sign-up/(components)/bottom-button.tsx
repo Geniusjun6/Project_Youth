@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, SignUpDispatch } from "../util/store";
-import { User, UserRefs } from "../model/user";
-import { submitUserData } from "../repository/user.sign-up.repository";
-import { validateNewUserData } from "../util/validation";
-import { NewUserState } from "../model/user";
+import { RootState, SignUpDispatch } from "../(util)/store";
+import { User, UserRefs } from "../(model)/user";
+import { submitUserData } from "../(repository)/user.sign-up.repository";
+import { validateNewUserData } from "../(util)/validation";
+import { NewUserState } from "../(model)/user";
 import { useRouter } from "next/navigation";
-import { setCheckCompeleteSignUp } from "../util/sign-up-check.slice";
+import { setCheckCompeleteSignUp } from "../(util)/sign-up-check.slice";
 
 export default function BottonButtons({ emailRef, passwordRef, passwordCheckRef, nameRef, phoneRef }) {
   const router = useRouter();

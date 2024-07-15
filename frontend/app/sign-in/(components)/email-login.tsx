@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import LabelAndInput from "../components/input";
+import LabelAndInput from "../../components/input";
 import { useRef, useState } from "react";
+import { emailLogIn } from "../(service)/sign-in.service";
 
 export default function EmailLogIn() {
   const [email, setEmail] = useState("");
@@ -10,13 +11,6 @@ export default function EmailLogIn() {
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-
-  const submit = async (event) => {
-    event.preventDefault();
-    console.log("서브밋 했습니다.");
-    // 이메일 및 비밀번호를 입력하지 않았을 경우 알럿 처리 필요
-    // 데이터 제출 시 서버와 통신로직 필요
-  };
 
   return (
     <div className="mx-auto mt-5 md:mt-10 min-w-fit">
@@ -26,7 +20,7 @@ export default function EmailLogIn() {
         <div className="border-b w-1/4"></div>
       </div>
       <div className="flex flex-col mx-auto min-w-fit items-center mt-5 md:mt-10 ">
-        <form className="w-[250px] space-y-4 mb-3 md:w-[530px] md:mb-5" onSubmit={submit}>
+        <form className="w-[250px] space-y-4 mb-3 md:w-[530px] md:mb-5">
           <LabelAndInput
             label={"이메일"}
             type={"email"}
@@ -50,7 +44,7 @@ export default function EmailLogIn() {
         </form>
         <button
           className="bg-youth_color-m text-text_color-gray hover:bg-youth_color-m/70 w-[250px] h-10 rounded-md md:w-[530px] md:h-[60px] md:rounded-xl md:text-xl"
-          onClick={submit}
+          onClick={emailLogIn}
         >
           이메일 로그인
         </button>

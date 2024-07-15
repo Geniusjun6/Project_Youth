@@ -16,7 +16,7 @@ export class AuthController {
    * @param LogInDto
    * @returns
    */
-  @Post("log-in")
+  @Post("log-in/email")
   async logIn(@Body() logInDto: LogInDto, @Request() req) {
     try {
       const { id, gender, email } = await this.authService.validateUserByEmailAndPassword(logInDto);

@@ -1,6 +1,6 @@
-import { UserRefs } from "../model/user";
-import { NewUserState } from "../model/user";
-import { focusInput } from "../service/sign-up.service";
+import { UserRefs } from "../(model)/user";
+import { NewUserState } from "../(model)/user";
+import { focusInput } from "../(service)/sign-up.service";
 
 /** 이메일 유효성 검사 */
 export const validateEmail = (email: string): boolean => {

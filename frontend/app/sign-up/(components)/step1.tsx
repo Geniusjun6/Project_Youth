@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import LabelAndInput from "../../components/input";
-import { SignUpDispatch, RootState } from "../util/store";
-import { setDuplicateEmail, setStep1 } from "../util/sign-up.slice";
+import { SignUpDispatch, RootState } from "../(util)/store";
+import { setDuplicateEmail, setStep1 } from "../(util)/sign-up.slice";
 import { useEffect, useState } from "react";
-import { validateEmail, validatePassword } from "../util/validation";
-import { checkEmailAvailability } from "../service/sign-up.service";
+import { validateEmail, validatePassword } from "../(util)/validation";
+import { checkEmailAvailability } from "../(service)/sign-up.service";
 
 export default function Step1({ emailRef, passwordRef, passowrdCheckRef }) {
   const dispatch = useDispatch<SignUpDispatch>();
