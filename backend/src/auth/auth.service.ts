@@ -20,7 +20,7 @@ export class AuthService {
     private readonly userRepository: Repository<User>
   ) {}
 
-  async validateUser(logInDto: LogInDto) {
+  async validateUserByEmailAndPassword(logInDto: LogInDto) {
     const { email, password } = logInDto;
 
     const user: User = await this.userRepository.findOneBy({ email });
@@ -45,33 +45,42 @@ export class AuthService {
   }
 
   async createRefreshToken(payload: RefreshToken): Promise<string> {
-    const refresh: string = this.jwtService.sign(payload, {
+    const refreshToken: string = this.jwtService.sign(payload, {
       expiresIn: "14d",
       secret: this.configService.get("JWT_REFRESH_SECRET")
     });
 
-    return refresh;
+    const user = await this.userService.findUserById(payload.id);
+
+    if (!user) {
+      throw new UnauthorizedException("해당하는 유저를 찾을 수 없습니다.");
+    }
+
+    await this.userRepository.update({ id: user.id }, { refreshToken });
+    return refreshToken;
   }
 
   async validateRefreshToken(refreshToken: string, currentIp: string) {
-    try {
-      const payload: RefreshToken = this.jwtService.verify<RefreshToken>(refreshToken, {
-        secret: this.configService.get("JWT_REFRESH_SECRET")
-      });
+    const payload: RefreshToken = this.jwtService.verify<RefreshToken>(refreshToken, {
+      secret: this.configService.get("JWT_REFRESH_SECRET")
+    });
 
-      if (payload.ip !== currentIp) {
-        throw new UnauthorizedException("Ip주소가 변경되었을 경우 다시 로그인이 필요합니다.");
-      }
+    const user: Omit<User, "password"> = await this.userService.findUserById(payload.id);
 
-      const user: Omit<User, "password"> = await this.userService.findUserById(payload.id);
-
-      if (!user) {
-        throw new UnauthorizedException("해당하는 유저를 찾을 수 없습니다. 다시 로그인 해주세요.");
-      }
-
-      return user;
-    } catch (error) {
-      throw new UnauthorizedException("유효하지 않은 토큰입니다. 다시 로그인해주세요.");
+    if (!user) {
+      throw new UnauthorizedException("해당하는 유저를 찾을 수 없습니다. 다시 로그인 해주세요.");
     }
+
+    if (user.refreshToken !== refreshToken) {
+      await this.userRepository.update({ id: user.id }, { refreshToken: null });
+      throw new UnauthorizedException("잘못된 토큰입니다. 다시 로그인 해주세요.");
+    }
+
+    if (payload.ip !== currentIp) {
+      await this.userRepository.update({ id: user.id }, { refreshToken: null });
+      throw new UnauthorizedException("Ip주소가 변경되었을 경우 다시 로그인이 필요합니다.");
+    }
+
+    return user;
   }
 }

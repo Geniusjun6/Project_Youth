@@ -18,4 +18,7 @@ export class User extends BaseEntity {
 
   @Column({ type: "enum", enum: Gender, nullable: false })
   gender: Gender;
+
+  @Column({ type: "text", nullable: true })
+  refreshToken: string;
 }
