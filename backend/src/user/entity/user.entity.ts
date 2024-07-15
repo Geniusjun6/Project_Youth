@@ -1,4 +1,4 @@
-import { BaseEntity } from "src/common/base.entity";
+import { BaseEntity } from "src/common/entity/base.entity";
 import { Column, Entity } from "typeorm";
 import { Gender } from "./user.gender.enum";
 
