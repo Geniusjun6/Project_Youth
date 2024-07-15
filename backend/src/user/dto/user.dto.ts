@@ -1,5 +1,6 @@
-import { IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsPhoneNumber, IsString, IsStrongPassword } from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsPhoneNumber, IsString, IsStrongPassword } from "class-validator";
 import { Gender } from "../entity/user.gender.enum";
+import { PickType } from "@nestjs/swagger";
 
 export class CreateUserDto {
   /**
@@ -74,3 +75,5 @@ export class CreateUserDto {
   @IsNotEmpty({ message: "성별을 입력해주세요." })
   gender: Gender;
 }
+
+export class LogInDto extends PickType(CreateUserDto, ["email", "password"]) {}

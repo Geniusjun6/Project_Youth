@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeOrmModuleAsyncOptions } from "./config/database.config";
 import { UserModule } from "./user/user.module";
 import { join } from "path";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { join } from "path";
       envFilePath: join(__dirname, "../../.env")
     }),
     TypeOrmModule.forRootAsync(typeOrmModuleAsyncOptions),
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [],
   providers: []
