@@ -52,7 +52,7 @@ export class AuthController {
 
   /**
    * 액세스 토큰 및 리프레시 토큰 재발급
-   * @param refreshToken
+   * @param refreshToken 리프레시 토큰 그대로 입력
    * @param req
    */
   @Post("generate-tokens")
