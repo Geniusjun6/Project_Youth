@@ -3,14 +3,47 @@
 import Link from "next/link";
 import LabelAndInput from "../../components/input";
 import { useRef, useState } from "react";
-import { emailLogIn } from "../(service)/sign-in.service";
+import { useRouter } from "next/navigation";
+import { SignIn, SignInRefs } from "../(model)/sign-in";
+import { validateEmailLogInData } from "../(util)/validation";
+import { emailSignIn } from "../(repository)/user.sign-in.repository";
+import { saveTokenInCookie } from "../../sign-up/(service)/sign-up.service";
 
 export default function EmailLogIn() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const emailSignInData: SignIn = { email, password };
+  const emailSignInRefs: SignInRefs = { emailRef, passwordRef };
+
+  const handleSubmitSignInData = async () => {
+    if (validateEmailLogInData(emailSignInData, emailSignInRefs)) {
+      // 이메일 요청
+      try {
+        const result = await emailSignIn(emailSignInData);
+
+        // 로그인이 실패할 경우 실패에 따른 메시지 알럿으로 알림
+        if (!result.success) {
+          alert(result.message);
+          return;
+        }
+
+        // 토큰 저장
+        localStorage.setItem("accessToken", result.accessToken);
+        saveTokenInCookie(result.refreshToken); // 서버에서 저장해서 뿌려주는게 좋은듯 httpOnly 속성 때문에
+
+        // 홈 화면으로 이동
+        router.push("/");
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  };
 
   return (
     <div className="mx-auto mt-5 md:mt-10 min-w-fit">
@@ -44,7 +77,7 @@ export default function EmailLogIn() {
         </form>
         <button
           className="bg-youth_color-m text-text_color-gray hover:bg-youth_color-m/70 w-[250px] h-10 rounded-md md:w-[530px] md:h-[60px] md:rounded-xl md:text-xl"
-          onClick={emailLogIn}
+          onClick={handleSubmitSignInData}
         >
           이메일 로그인
         </button>
