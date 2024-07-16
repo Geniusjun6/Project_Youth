@@ -3,14 +3,14 @@
 import Link from "next/link";
 import LabelAndInput from "../../components/input";
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { SignIn, SignInRefs } from "../(model)/sign-in";
 import { validateEmailLogInData } from "../(util)/validation";
 import { emailSignIn } from "../(repository)/user.sign-in.repository";
 import { saveTokenInCookie } from "../../sign-up/(service)/sign-up.service";
+import { useSignInStore } from "../(util)/sign-in.store";
 
 export default function EmailLogIn() {
-  const router = useRouter();
+  const { setLogIn } = useSignInStore();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,8 +37,10 @@ export default function EmailLogIn() {
         localStorage.setItem("accessToken", result.accessToken);
         saveTokenInCookie(result.refreshToken); // 서버에서 저장해서 뿌려주는게 좋은듯 httpOnly 속성 때문에
 
+        setLogIn();
+
         // 홈 화면으로 이동
-        router.push("/");
+        window.location.href = "/";
       } catch (error) {
         alert(error.message);
       }
