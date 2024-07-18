@@ -83,4 +83,8 @@ export class AuthService {
 
     return user;
   }
+
+  deleteRefreshToken(id: number) {
+    this.userRepository.update({ id }, { refreshToken: null });
+  }
 }

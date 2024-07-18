@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
-import { ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { CorsOptions } from "@nestjs/common/interfaces/external/cors-options.interface";
+import { ValidationPipe } from "@nestjs/common";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,8 +12,8 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: ["Authorization", "Content-Type"],
     methods: "GET, POST, PUT, DELETE, OPTIONS",
-    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept"
-  }
+    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  };
 
   app.enableCors(corsOptions);
 
@@ -36,8 +36,8 @@ async function bootstrap() {
     .setDescription("시니어를 위한 채용 플랫폼")
     .setVersion("1.0")
     .addBearerAuth({ type: "http", scheme: "bearer", bearerFormat: "JWT" })
-    .build()
-  
+    .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api-docs", app, document, {
     swaggerOptions: {

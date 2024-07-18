@@ -1,10 +1,11 @@
-import { Body, Controller, Post, Query, Request, UseGuards } from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Post, Query, Request, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { LogInDto } from "src/user/dto/user.dto";
 import { AuthGuard } from "@nestjs/passport";
 import { AccessToken, RefreshToken } from "./interface/token-payload.interface";
 import { User } from "src/user/entity/user.entity";
+import { UserInfo } from "src/common/decorator/user.decorator";
 
 @ApiTags("Auth")
 @Controller("auth")
@@ -16,6 +17,7 @@ export class AuthController {
    * @param LogInDto
    * @returns
    */
+  @HttpCode(HttpStatus.OK)
   @Post("log-in/email")
   async logIn(@Body() logInDto: LogInDto, @Request() req) {
     try {
@@ -41,6 +43,31 @@ export class AuthController {
         message: "okay",
         accessToken,
         refreshToken
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message
+      };
+    }
+  }
+
+  /**
+   * 로그아웃
+   * @param param0
+   * @returns
+   */
+  @ApiBearerAuth()
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(AuthGuard("jwt"))
+  @Post("log-out")
+  logOut(@UserInfo() { id }: User) {
+    try {
+      this.authService.deleteRefreshToken(id);
+
+      return {
+        success: true,
+        message: "okay"
       };
     } catch (error) {
       return {
