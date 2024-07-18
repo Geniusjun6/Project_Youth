@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import Step1 from "./step1";
 import Step2 from "./step2";
 import BottomButton from "./bottom-button";
-import { store } from "../util/store";
+import { store } from "../(util)/store";
 import { useRef } from "react";
 
 export default function SignUp() {

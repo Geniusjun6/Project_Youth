@@ -1,9 +1,9 @@
 import axios from "axios";
-import { UserProps } from "../model/user";
+import { UserProps } from "../(model)/user";
 
 const apiUrl = "http://localhost:8000/api/user/";
 
-/** 이메일 중복 체크 API 요청(임시) */
+/** 이메일 중복 체크 API 요청 */
 export const checkDuplicateEmail = async (email: string) => {
   try {
     const url = `${apiUrl}find-user?email=${email}`;

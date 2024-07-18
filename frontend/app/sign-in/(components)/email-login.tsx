@@ -1,21 +1,53 @@
 "use client";
 
 import Link from "next/link";
-import LabelAndInput from "../components/input";
+import LabelAndInput from "../../components/input";
 import { useRef, useState } from "react";
+import { SignIn, SignInRefs } from "../(model)/sign-in";
+import { validateEmailLogInData } from "../(util)/validation";
+import { emailSignIn } from "../(repository)/user.sign-in.repository";
+import { saveTokenInCookie } from "../../sign-up/(service)/sign-up.service";
+import { useSignInStore } from "../(util)/sign-in.store";
+import { useRouter } from "next/navigation";
 
 export default function EmailLogIn() {
+  const router = useRouter();
+  const { isSignIn, setLogIn } = useSignInStore();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const submit = async (event) => {
-    event.preventDefault();
-    console.log("서브밋 했습니다.");
-    // 이메일 및 비밀번호를 입력하지 않았을 경우 알럿 처리 필요
-    // 데이터 제출 시 서버와 통신로직 필요
+  const emailSignInData: SignIn = { email, password };
+  const emailSignInRefs: SignInRefs = { emailRef, passwordRef };
+
+  const handleSubmitSignInData = async () => {
+    if (validateEmailLogInData(emailSignInData, emailSignInRefs)) {
+      // 이메일 요청
+      try {
+        const result = await emailSignIn(emailSignInData);
+
+        // 로그인이 실패할 경우 실패에 따른 메시지 알럿으로 알림
+        if (!result.success) {
+          alert(result.message);
+          return;
+        }
+
+        // 토큰 저장
+        localStorage.setItem("accessToken", result.accessToken);
+        saveTokenInCookie(result.refreshToken); // 서버에서 저장해서 뿌려주는게 좋은듯 httpOnly 속성 때문에
+
+        // 로그인 상태 저장
+        setLogIn();
+
+        // 홈 화면으로 이동
+        router.push("/");
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   };
 
   return (
@@ -26,7 +58,7 @@ export default function EmailLogIn() {
         <div className="border-b w-1/4"></div>
       </div>
       <div className="flex flex-col mx-auto min-w-fit items-center mt-5 md:mt-10 ">
-        <form className="w-[250px] space-y-4 mb-3 md:w-[530px] md:mb-5" onSubmit={submit}>
+        <form className="w-[250px] space-y-4 mb-3 md:w-[530px] md:mb-5">
           <LabelAndInput
             label={"이메일"}
             type={"email"}
@@ -50,7 +82,7 @@ export default function EmailLogIn() {
         </form>
         <button
           className="bg-youth_color-m text-text_color-gray hover:bg-youth_color-m/70 w-[250px] h-10 rounded-md md:w-[530px] md:h-[60px] md:rounded-xl md:text-xl"
-          onClick={submit}
+          onClick={handleSubmitSignInData}
         >
           이메일 로그인
         </button>

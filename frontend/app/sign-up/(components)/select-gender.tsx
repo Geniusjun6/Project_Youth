@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { RootState, SignUpDispatch } from "../util/store";
-import { genderSelect } from "../util/sign-up.slice";
+import { RootState, SignUpDispatch } from "../(util)/store";
+import { genderSelect } from "../(util)/sign-up.slice";
 
 export default function GenderSelect() {
   const dispatch = useDispatch<SignUpDispatch>();

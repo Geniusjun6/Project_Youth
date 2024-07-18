@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { RootState, SignUpDispatch } from "../util/store";
-import { setCheckCompeleteSignUp } from "../util/sign-up-check.slice";
+import { RootState, SignUpDispatch } from "../(util)/store";
+import { setCheckCompeleteSignUp } from "../(util)/sign-up-check.slice";
 import { useRouter } from "next/navigation";
 
 export default function SignUpCompleteText() {

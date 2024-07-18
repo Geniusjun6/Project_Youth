@@ -5,7 +5,7 @@ import ServiceCards from "./service-cards";
 import SignInBtn from "./sign-in-btn";
 
 import { Provider } from "react-redux";
-import { store } from "../util/store";
+import { store } from "../(util)/store";
 
 export default function SignUpComplete() {
   return (

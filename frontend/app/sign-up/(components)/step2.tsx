@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import LabelAndInput from "../../components/input";
 import GenderSelect from "./select-gender";
-import { RootState, SignUpDispatch } from "../util/store";
-import { setStep2 } from "../util/sign-up.slice";
+import { RootState, SignUpDispatch } from "../(util)/store";
+import { setStep2 } from "../(util)/sign-up.slice";
 
 export default function Step2({ nameRef, phoneRef }) {
   const dispatch = useDispatch<SignUpDispatch>();
