@@ -8,9 +8,11 @@ import { validateEmailLogInData } from "../(util)/validation";
 import { emailSignIn } from "../(repository)/user.sign-in.repository";
 import { saveTokenInCookie } from "../../sign-up/(service)/sign-up.service";
 import { useSignInStore } from "../(util)/sign-in.store";
+import { useRouter } from "next/navigation";
 
 export default function EmailLogIn() {
-  const { setLogIn } = useSignInStore();
+  const router = useRouter();
+  const { isSignIn, setLogIn } = useSignInStore();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,10 +39,11 @@ export default function EmailLogIn() {
         localStorage.setItem("accessToken", result.accessToken);
         saveTokenInCookie(result.refreshToken); // 서버에서 저장해서 뿌려주는게 좋은듯 httpOnly 속성 때문에
 
+        // 로그인 상태 저장
         setLogIn();
 
         // 홈 화면으로 이동
-        window.location.href = "/";
+        router.push("/");
       } catch (error) {
         alert(error.message);
       }

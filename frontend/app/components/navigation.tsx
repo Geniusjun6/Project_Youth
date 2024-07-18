@@ -8,15 +8,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faX } from "@fortawesome/free-solid-svg-icons";
 import logo from "/public/image/logo.svg";
 import { useSignInStore } from "../sign-in/(util)/sign-in.store";
+import { deleteTokens } from "./(service)/nav.service";
 
 export default function Navigation() {
   const [isOpenMenu, setIsOpen] = useState(false);
 
-  const { isSignIn } = useSignInStore();
+  const { isSignIn, setLogOut } = useSignInStore();
   console.log("isSignIn: ", isSignIn);
 
   const toggleMenu: () => void = () => {
     setIsOpen(!isOpenMenu);
+  };
+
+  const handleLogOut = () => {
+    // 추후 DB에 리프레시 토큰 삭제 로직 추가 필요
+    deleteTokens();
+    setLogOut();
   };
 
   useEffect(() => {
@@ -40,8 +47,14 @@ export default function Navigation() {
         </div>
         <div className="flex space-x-3">
           {isSignIn ? (
-            <div className="flex items-center text-lg md:text-2xl">
-              <FontAwesomeIcon icon={faUser} />
+            <div className="flex items-center space-x-4 text-lg md:text-2xl">
+              <button
+                onClick={handleLogOut}
+                className="p-4 text-lg rounded-md md:flex hidden hover:bg-youth_color-s/45 hover:font-bold cursor-pointer"
+              >
+                로그아웃
+              </button>
+              <FontAwesomeIcon className="hover:bg-youth_color-s/45 cursor-pointer p-4 rounded-md" icon={faUser} />
             </div>
           ) : (
             <div className="flex">
