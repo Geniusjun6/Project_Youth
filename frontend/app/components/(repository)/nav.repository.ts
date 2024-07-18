@@ -12,7 +12,8 @@ export const deleteRefreshToken = async (accessToken: string) => {
       {
         headers: {
           Authorization: `Bearer ${accessToken}`
-        }
+        },
+        withCredentials: true
       }
     );
   } catch (error) {

@@ -3,12 +3,13 @@ import { AppModule } from "./app.module";
 import { CorsOptions } from "@nestjs/common/interfaces/external/cors-options.interface";
 import { ValidationPipe } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import * as cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const corsOptions: CorsOptions = {
-    origin: "*",
+    origin: "http://localhost:3000",
     credentials: true,
     exposedHeaders: ["Authorization", "Content-Type"],
     methods: "GET, POST, PUT, DELETE, OPTIONS",
@@ -29,6 +30,8 @@ async function bootstrap() {
       forbidNonWhitelisted: true
     })
   );
+
+  app.use(cookieParser());
 
   // swagger 설정
   const config = new DocumentBuilder()
