@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Query, Request, UseGuards } from "@nestjs/common";
+import { Body, Controller, HttpStatus, Post, Query, Req, Res, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { LogInDto } from "src/user/dto/user.dto";
@@ -6,6 +6,7 @@ import { AuthGuard } from "@nestjs/passport";
 import { AccessToken, RefreshToken } from "./interface/token-payload.interface";
 import { User } from "src/user/entity/user.entity";
 import { UserInfo } from "src/common/decorator/user.decorator";
+import { Request, Response } from "express";
 
 @ApiTags("Auth")
 @Controller("auth")
@@ -17,39 +18,39 @@ export class AuthController {
    * @param LogInDto
    * @returns
    */
-  @HttpCode(HttpStatus.OK)
   @Post("log-in/email")
-  async logIn(@Body() logInDto: LogInDto, @Request() req) {
-    try {
-      const { id, gender, email } = await this.authService.validateUserByEmailAndPassword(logInDto);
+  async logIn(@Body() logInDto: LogInDto, @Req() req: Request, @Res() res: Response) {
+    const { id, gender, email } = await this.authService.validateUserByEmailAndPassword(logInDto);
 
-      const accessTokenPayload: AccessToken = {
-        id,
-        gender,
-        email
-      };
+    const accessTokenPayload: AccessToken = {
+      id,
+      gender,
+      email
+    };
 
-      const accessToken: string = await this.authService.createAccessToken(accessTokenPayload);
+    const accessToken: string = await this.authService.createAccessToken(accessTokenPayload);
 
-      const refreshTokenPayload: RefreshToken = {
-        id,
-        ip: req.ip
-      };
+    const refreshTokenPayload: RefreshToken = {
+      id,
+      ip: req.ip
+    };
 
-      const refreshToken: string = await this.authService.createRefreshToken(refreshTokenPayload);
+    const refreshToken: string = await this.authService.createRefreshToken(refreshTokenPayload);
+    const maxAge: number = 7 * 24 * 60 * 60;
 
-      return {
-        success: true,
-        message: "okay",
-        accessToken,
-        refreshToken
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: error.message
-      };
-    }
+    res.cookie("refreshToken", refreshToken, {
+      // httpOnly: true,
+      // secure: true,
+      // sameSite: "none",
+      // maxAge,
+      // path: "/"
+    });
+
+    return res.status(HttpStatus.OK).json({
+      success: true,
+      message: "okay",
+      accessToken
+    });
   }
 
   /**
@@ -58,23 +59,16 @@ export class AuthController {
    * @returns
    */
   @ApiBearerAuth()
-  @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard("jwt"))
   @Post("log-out")
-  logOut(@UserInfo() { id }: User) {
-    try {
-      this.authService.deleteRefreshToken(id);
+  logOut(@UserInfo() { id }: User, @Req() req: Request, @Res() res: Response) {
+    this.authService.deleteRefreshToken(id);
+    res.clearCookie("refreshToken");
 
-      return {
-        success: true,
-        message: "okay"
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: error.message
-      };
-    }
+    return res.status(HttpStatus.OK).json({
+      success: true,
+      message: "okay"
+    });
   }
 
   /**
@@ -83,7 +77,7 @@ export class AuthController {
    * @param req
    */
   @Post("generate-tokens")
-  async generateTokens(@Query("refreshToken") refreshToken: string, @Request() req) {
+  async generateTokens(@Query("refreshToken") refreshToken: string, @Req() req: Request, @Res() res: Response) {
     try {
       const { id, gender, email }: Omit<User, "password"> = await this.authService.validateRefreshToken(
         refreshToken,
@@ -104,18 +98,26 @@ export class AuthController {
       };
 
       const newRefreshToken: string = await this.authService.createRefreshToken(refreshTokenPayload);
+      const maxAge: number = 7 * 24 * 60 * 60;
 
-      return {
+      res.cookie("refreshToken", newRefreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge,
+        path: "/"
+      });
+
+      return res.status(HttpStatus.OK).json({
         success: true,
         message: "okay",
-        acceessToken: newAccessToken,
-        refreshToken: newRefreshToken
-      };
+        acceessToken: newAccessToken
+      });
     } catch (error) {
-      return {
+      return res.json({
         success: false,
         message: error.message
-      };
+      });
     }
   }
 }
