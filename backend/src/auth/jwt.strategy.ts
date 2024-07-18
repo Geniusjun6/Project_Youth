@@ -4,11 +4,12 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { UserService } from "src/user/user.service";
 import { User } from "src/user/entity/user.entity";
+import { AccessToken } from "./interface/token-payload.interface";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
-    configService: ConfigService,
+    private configService: ConfigService,
     private readonly userService: UserService
   ) {
     super({
@@ -19,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   // 유저인지 아닌지 아니라면 401에러 Unauthorized
-  async validate(payload: any) {
+  async validate(payload: AccessToken) {
     const { id } = payload;
     const user: Omit<User, "password"> = await this.userService.findUserById(id);
     return user;

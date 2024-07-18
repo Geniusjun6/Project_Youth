@@ -7,7 +7,7 @@ const apiUrl = "http://localhost:8000/api/auth/";
 export const emailSignIn = async (signInDto: SignIn) => {
   try {
     const url = `${apiUrl}log-in/email`;
-    const result = await axios.post(url, signInDto);
+    const result = await axios.post(url, signInDto, { withCredentials: true });
 
     return result.data;
   } catch (error) {

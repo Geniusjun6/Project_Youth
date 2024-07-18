@@ -9,20 +9,27 @@ import { faBars, faUser, faX } from "@fortawesome/free-solid-svg-icons";
 import logo from "/public/image/logo.svg";
 import { useSignInStore } from "../sign-in/(util)/sign-in.store";
 import { deleteTokens } from "./(service)/nav.service";
+import { deleteRefreshToken } from "./(repository)/nav.repository";
 
 export default function Navigation() {
   const [isOpenMenu, setIsOpen] = useState(false);
 
   const { isSignIn, setLogOut } = useSignInStore();
-  console.log("isSignIn: ", isSignIn);
 
   const toggleMenu: () => void = () => {
     setIsOpen(!isOpenMenu);
   };
 
-  const handleLogOut = () => {
-    // 추후 DB에 리프레시 토큰 삭제 로직 추가 필요
+  const handleLogOut = async () => {
+    const accessToken: string | null = localStorage.getItem("accessToken");
+
+    // DB에 리프레시 토큰 삭제
+    await deleteRefreshToken(accessToken);
+
+    // 클라이언트 측 토큰 삭제
     deleteTokens();
+
+    // 로그인 상태 변경
     setLogOut();
   };
 

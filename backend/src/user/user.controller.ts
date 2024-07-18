@@ -21,18 +21,11 @@ export class UserController {
       throw new BadRequestException("비밀번호를 확인해주세요.");
     }
 
-    try {
-      await this.userService.signUpUser(createUserDto);
-      return {
-        success: true,
-        message: "okay"
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: error.message
-      };
-    }
+    await this.userService.signUpUser(createUserDto);
+    return {
+      success: true,
+      message: "okay"
+    };
   }
 
   /**
@@ -42,19 +35,12 @@ export class UserController {
    */
   @Get("find-user")
   async findUserByEmail(@Query("email") email: string) {
-    try {
-      const isExitUser: boolean = await this.userService.findUserByEmail(email);
+    const isExitUser: boolean = await this.userService.findUserByEmail(email);
 
-      return {
-        success: true,
-        message: "okay",
-        data: isExitUser
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: error.message
-      };
-    }
+    return {
+      success: true,
+      message: "okay",
+      data: isExitUser
+    };
   }
 }

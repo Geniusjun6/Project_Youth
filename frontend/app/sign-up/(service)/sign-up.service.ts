@@ -19,13 +19,3 @@ export const checkEmailAvailability = async (email: string): Promise<boolean> =>
 export const focusInput = (refValue: React.RefObject<HTMLInputElement>) => {
   refValue.current.focus();
 };
-
-/** 토큰을 쿠키에 담음 */
-export const saveTokenInCookie = (token: string): void => {
-  Cookies.set("refreshToken", token, {
-    expires: 7,
-    secure: true,
-    sameSite: "Strict",
-    path: "/"
-  });
-};

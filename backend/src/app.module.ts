@@ -4,7 +4,9 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeOrmModuleAsyncOptions } from "./config/database.config";
 import { UserModule } from "./user/user.module";
 import { join } from "path";
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from "./auth/auth.module";
+import { APP_FILTER } from "@nestjs/core";
+import { GlobalExceptionsFilter } from "./common/filter/global.filter";
 
 @Module({
   imports: [
@@ -17,6 +19,6 @@ import { AuthModule } from './auth/auth.module';
     AuthModule
   ],
   controllers: [],
-  providers: []
+  providers: [{ provide: APP_FILTER, useClass: GlobalExceptionsFilter }]
 })
 export class AppModule {}
